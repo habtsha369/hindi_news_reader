@@ -3,13 +3,17 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/article.dart';
 
+/// A service class to handle all API requests to NewsAPI.
 class NewsApiService {
+  /// The base URL for the NewsAPI.
   static const String baseUrl = 'https://newsapi.org/v2';
 
+  /// Retrieves the API key from the environment variables.
   static String get apiKey {
     return dotenv.env['NEWS_API_KEY'] ?? '';
   }
 
+  /// A map to map country codes to their full names for search queries.
   static final Map<String, String> _countryNames = {
     'us': 'United States',
     'in': 'India',
@@ -19,6 +23,10 @@ class NewsApiService {
     'et': 'Ethiopia',
   };
 
+  /// Fetches the top headlines for a specific country.
+  /// 
+  /// If the country is 'us', it uses the /top-headlines endpoint.
+  /// Otherwise, it uses the /everything endpoint with the country name as the query.
   static Future<List<Article>> getTopHeadlines(String country) async {
     if (apiKey.isEmpty || apiKey == 'your_api_key_here') throw Exception('Please configure a valid API Key in the .env file');
     
@@ -44,6 +52,9 @@ class NewsApiService {
     }
   }
 
+  /// Searches for articles based on a given query string.
+  /// 
+  /// Uses the /everything endpoint to search for the query and limits the results to 20.
   static Future<List<Article>> searchArticles(String query) async {
     if (apiKey.isEmpty || apiKey == 'your_api_key_here') throw Exception('Please configure a valid API Key in the .env file');
     

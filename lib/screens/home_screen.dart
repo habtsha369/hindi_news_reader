@@ -4,6 +4,7 @@ import '../models/article.dart';
 import '../services/news_api_service.dart';
 import 'article_detail_screen.dart';
 
+/// The home screen of the application that displays top headlines.
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -11,7 +12,9 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
+/// State for the [HomeScreen].
 class _HomeScreenState extends State<HomeScreen> {
+  /// A map of country codes to country names for the dropdown selector.
   final Map<String, String> _countries = {
     'et': 'Ethiopia',
     'us': 'United States',
@@ -21,7 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
     'au': 'Australia',
   };
 
+  /// The currently selected country code.
   String _selectedCountry = 'et';
+  /// A future that holds the list of fetched articles.
   late Future<List<Article>> _headlinesFuture;
 
   @override
@@ -30,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _fetchHeadlines();
   }
 
+  /// Fetches the headlines for the currently [_selectedCountry].
   void _fetchHeadlines() {
     _headlinesFuture = NewsApiService.getTopHeadlines(_selectedCountry);
   }
