@@ -4,11 +4,15 @@ import 'package:url_launcher/url_launcher.dart';
 import '../models/article.dart';
 import 'package:intl/intl.dart';
 
+/// A screen that displays the full details of a specific news article.
 class ArticleDetailScreen extends StatelessWidget {
+  /// The article to be displayed on this screen.
   final Article article;
 
+  /// Creates an [ArticleDetailScreen] with the required [article].
   const ArticleDetailScreen({Key? key, required this.article}) : super(key: key);
 
+  /// Formats the ISO 8601 date string into a more readable format.
   String _formatDate(String dateString) {
     if (dateString.isEmpty) return '';
     try {
@@ -19,6 +23,7 @@ class ArticleDetailScreen extends StatelessWidget {
     }
   }
 
+  /// Launches the article's URL in the device's default web browser.
   Future<void> _launchUrl() async {
     final Uri url = Uri.parse(article.url);
     if (!await launchUrl(url)) {

@@ -4,6 +4,7 @@ import '../models/article.dart';
 import '../services/news_api_service.dart';
 import 'article_detail_screen.dart';
 
+/// A screen that allows users to search for news articles by keywords.
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
@@ -11,10 +12,14 @@ class SearchScreen extends StatefulWidget {
   _SearchScreenState createState() => _SearchScreenState();
 }
 
+/// State class for [SearchScreen].
 class _SearchScreenState extends State<SearchScreen> {
+  /// Controller for the search input field.
   final TextEditingController _searchController = TextEditingController();
+  /// Future holding the list of articles matching the search query.
   Future<List<Article>>? _searchFuture;
 
+  /// Initiates a search request using the provided query in the text field.
   void _performSearch() {
     final query = _searchController.text.trim();
     if (query.isNotEmpty) {
