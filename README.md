@@ -1,6 +1,10 @@
 # hindi_news_reader
 
-A new Flutter project.
+**Author:** Habtewold Mazengia  
+**ID:** ATE/5127/15
+
+## Description
+A functional news reader application built in Flutter that integrates with NewsAPI to fetch and display top headlines and searchable articles. The app features a clean UI with home, search, and detail screens, and supports fetching news globally.
 
 ## Getting Started
 
